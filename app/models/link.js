@@ -26,12 +26,13 @@ var urls = new db.Schema({
   timestamps: Date
 });
 
-urls.pre('save', function(model) {
+urls.pre('save', function(next) {
   var shasum = crypto.createHash('sha1');
   console.log('------------------', shasum);
-  console.log('------------url: ', this.url);
-  shasum.update(model.url);
-  model.code = shasum.digest('hex').slice(0, 5);
+  shasum.update(this.url);
+  this.code = shasum.digest('hex').slice(0, 5);
+  console.log('------------url: ', this.code);
+  next();
 })
 
 var Link = db.mongoose.model('Link', urls);
