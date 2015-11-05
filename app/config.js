@@ -6,6 +6,7 @@ mongoose.connect('mongodb://localhost/shortly');
 var db = mongoose.connection;
 var Schema = mongoose.Schema;
 
+module.exports.mongoose = mongoose;
 module.exports.db = db;
 module.exports.Schema = Schema;
 
