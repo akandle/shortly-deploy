@@ -78,7 +78,10 @@ module.exports = function(grunt) {
         stdout: true
       },
       prodServer: {
-        command: 'git --no-pager push azure master'
+        command: 'git push azure master'
+      },
+      finished: {
+        command: 'echo Finished'
       }
     },
   });
@@ -119,6 +122,7 @@ module.exports = function(grunt) {
     if(grunt.option('prod')) {
       // add your production server task here
       grunt.task.run(['shell:prodServer']);
+      grunt.task.run(['shell:finished']);
     } else {
       grunt.task.run([ 'server-dev' ]);
     }
