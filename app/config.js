@@ -1,7 +1,11 @@
 // var Bookshelf = require('bookshelf');
 var path = require('path');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/shortly');
+if(process.env.NODE_ENV === 'dev') {
+  mongoose.connect('mongodb://localhost/shortly');
+} else if(process.env.NODE_ENV === 'production') {
+  mongoose.connect('mongodb://MongoLab-0:l1xh1i9z69R2euDoXbEbwxRNJUnfDz064H9hXKP0hI8-@ds052408.mongolab.com:52408/MongoLab-0');
+}
 
 var db = mongoose.connection;
 var Schema = mongoose.Schema;
